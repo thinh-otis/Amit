@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 app.use("/api", router);
 
 // Kiểm tra kết nối MongoDB và Cloudinary
-app.get('/test', async (req, res) => {
+app.get('/api/test', async (req, res) => {
     try {
         await connectDB(); // Kiểm tra MongoDB
         await cloudinary.api.ping(); // Kiểm tra Cloudinary
