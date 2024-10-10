@@ -13,12 +13,12 @@ const Traffic = require('./models/Traffic');
 
 const app = express();
 
+// Routes
+app.use("/api", router);
+
 app.get('/', (req, res) => {
     res.send('Server is running!');
 });
-
-// Routes
-app.use("/api", router);
 
 // Kiểm tra kết nối MongoDB và Cloudinary
 app.get('/api/test', async (req, res) => {
@@ -34,7 +34,7 @@ app.get('/api/test', async (req, res) => {
 
 // Middleware 
 app.use(cors({
-    origin: process.env.FRONTEND_URL,
+    origin: 'http://localhost:3000',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }));
@@ -60,7 +60,7 @@ app.use(helmet.contentSecurityPolicy({
     directives: {
         defaultSrc: ["'self'"],
         imgSrc: ["'self'", "https://res.cloudinary.com", "data"],
-        scriptSrc: ["'self'", "https://cdnjs.cloudflare.com"],
+         scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://vercel.live"],
     },
 }));
 
