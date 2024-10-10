@@ -13,11 +13,15 @@ const Traffic = require('./models/Traffic');
 
 const app = express();
 
+app.get('/', (req, res) => {
+    res.send('Server is running!');
+});
+
 // Routes
 app.use("/api", router);
 
-app.get('/', (req, res) => {
-    res.send('Server is running!');
+app.get('/api/test', (req, res) => {
+    res.json({ message: "API is working!" });
 });
 
 // Kiểm tra kết nối MongoDB và Cloudinary
